@@ -6,7 +6,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const USER_SERVICE_URL = process.env.USER_SERVICE_URL; // URL del microservicio
+const USER_SERVICE_URL = "https://tatsoftgestionusuarios-hufsaqe0emc6gsf4.eastus-01.azurewebsites.net/api/usuarios"; // URL del microservicio
+const JWT_SECRET = "micontrasenamuylargayseguraquees256bitsabc123!";
 
 export const login = async (req: Request, res: Response) => {
   const { cedula, password } = req.body;
@@ -28,13 +29,13 @@ export const login = async (req: Request, res: Response) => {
     if (!validPassword) {
       return res.status(401).json({ error: 'Contraseña incorrecta' });
     }
-    if (!process.env.JWT_SECRET) {
+    if (!JWT_SECRET) {
       throw new Error('JWT_SECRET is not defined in environment variables');
   }
     // Genera el token
     const token = jwt.sign(
       { password: user['contraseña'], cedula: user.cedula, role: user.rol, id_usuario: user.id_usuario }, 
-      process.env.JWT_SECRET ?? ' ',
+      JWT_SECRET ?? ' ',
       { expiresIn: '1h' }
     );
 

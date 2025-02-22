@@ -11,7 +11,7 @@ import redis from './config/configRedis';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = 10000;
 
 app.use(cors());
 app.use(bodyParser.json());

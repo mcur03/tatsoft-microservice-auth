@@ -6,10 +6,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const connectionString = process.env.AZURE_CONNECTION_STRING || "";
+const connectionString = "endpoint=https://restablecer-contrasena.unitedstates.communication.azure.com/;accesskey=3Stfxty5fOVTHDDyeNysPnNacFK6xEXHEAhM8A4loqxLOZXJteKJJQQJ99ALACULyCps5mg0AAAAAZCSNdnB";
 const client = new EmailClient(connectionString);
 
-const senderAddress = process.env.AZURE_SENDER_ADDRESS;
+const senderAddress = "DoNotReply@64f04cf5-631e-4595-9c6e-46dea4aee9bc.azurecomm.net";
 if (!senderAddress) {
   throw new Error("El remitente (AZURE_SENDER_ADDRESS) no está configurado.");
 }
@@ -35,7 +35,7 @@ export const sendEmail = async (to: string, subject: string, code: string) => {
 
     // Configurar el mensaje de correo electrónico
     const emailMessage = {
-      senderAddress: process.env.AZURE_SENDER_ADDRESS || "",
+      senderAddress: "DoNotReply@64f04cf5-631e-4595-9c6e-46dea4aee9bc.azurecomm.net",
       content: { subject, html },
       recipients: { to: [{ address: to }] },
     };

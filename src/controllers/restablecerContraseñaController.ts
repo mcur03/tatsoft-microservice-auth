@@ -6,6 +6,7 @@ import redis from '../config/configRedis';
 import { sendEmail } from "../utils/emailService";
 
 dotenv.config();
+const USER_SERVICE_URL = "https://tatsoftgestionusuarios-hufsaqe0emc6gsf4.eastus-01.azurewebsites.net/api/usuarios"; // URL del microservicio
 
 // Endpoint para Solicitar Código
 export const requestResetCode = async (req: Request, res: Response) => {
@@ -15,8 +16,8 @@ export const requestResetCode = async (req: Request, res: Response) => {
         console.log('Starting requestResetCode for email:', email);
 
         // Verificar si el usuario existe
-        console.log('Checking user existence at:', `${process.env.USER_SERVICE_URL}/email/${email}`);
-        const response = await axios.get(`${process.env.USER_SERVICE_URL}/email/${email}`);
+        console.log('Checking user existence at:', `${USER_SERVICE_URL}/email/${email}`);
+        const response = await axios.get(`${USER_SERVICE_URL}/email/${email}`);
         
         if (!response.data) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
@@ -92,7 +93,7 @@ export const resetPassword = async (req: Request, res: Response) => {
 
     try {
         // Actualizar la contraseña en el microservicio de usuarios
-        await axios.put(`${process.env.USER_SERVICE_URL}/update-password`, {
+        await axios.put(`${USER_SERVICE_URL}/update-password`, {
             correo:email,
             nuevaContraseña: newPassword,
         });
