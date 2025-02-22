@@ -42,15 +42,15 @@ export const login = async (req: Request, res: Response) => {
     
     
     res.json({ token });
-  } catch (error) {
+  } catch (error:any) {
     if (axios.isAxiosError(error)) {
       if (error.response?.status === 404) {
-        return res.status(404).json({ error: 'El usuario no existe' });
+        return res.status(404).json({ error: 'El usuario no existe', details: error.message });
       }
-      return res.status(error.response?.status || 500).json({ error: 'Error en el microservicio de usuarios' });
+      return res.status(error.response?.status || 500).json({ error: 'Error en el microservicio de usuarios', details: error.message});
     }
 
     console.error(error);
-    return res.status(500).json({ error: 'Error en el servidor' });
+    return res.status(500).json({ error: 'Error en el servidor', details: error.message });
   }
 };

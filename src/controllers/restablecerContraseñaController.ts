@@ -51,7 +51,7 @@ export const requestResetCode = async (req: Request, res: Response) => {
         if (error.response?.status === 404) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
           }
-          return res.status(error.response?.status || 500).json({ error: 'Error en el microservicio de usuarios' });
+          return res.status(error.response?.status || 500).json({ error: 'Error en el microservicio de usuarios', details: error.message });
     }
 };
 
