@@ -95,7 +95,7 @@ export const resetPassword = async (req: Request, res: Response) => {
         // Actualizar la contraseña en el microservicio de usuarios
         await axios.put(`${USER_SERVICE_URL}/update-password`, {
             correo:email,
-            nuevaContraseña: newPassword,
+            nuevaContrasena: newPassword,
         });
 
         res.status(200).json({ message: 'Contraseña actualizada con éxito' });
