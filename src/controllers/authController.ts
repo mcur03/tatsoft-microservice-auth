@@ -6,8 +6,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const USER_SERVICE_URL = "https://tatsoftgestionusuarios-hufsaqe0emc6gsf4.eastus-01.azurewebsites.net/api/usuarios"; // URL del microservicio
-const JWT_SECRET = "micontrasenamuylargayseguraquees256bitsabc123!";
+const USER_SERVICE_URL = process.env.USER_SERVICE_URL;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const login = async (req: Request, res: Response) => {
   const { cedula, password } = req.body;

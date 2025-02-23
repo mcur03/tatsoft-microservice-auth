@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import authRoutes from './routes/auth';
-import reset from './routes/restablecercontraseña';
+import reset from './routes/restablecercontrasena';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import redis from './config/configRedis';

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { requestResetCode, validateResetCode, resetPassword } from '../controllers/restablecerContraseñaController';
+import { requestResetCode, validateResetCode, resetPassword } from '../controllers/restablecerContrasenaController';
 import {validateRequest} from '../Middleware/validate'
 
 const router: Router = Router();

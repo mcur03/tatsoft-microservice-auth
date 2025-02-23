@@ -38,4 +38,8 @@ redis.on('error', (err) => {
   console.error('Redis connection error:', err);
 });
 
+redis.on("connect", () => console.log("✅ Conectado a Redis"));
+redis.on("error", (err) => console.error("❌ Error en Redis:", err));
+redis.on("end", () => console.log("⚠️ Conexión con Redis cerrada"));
+
 export default redis;

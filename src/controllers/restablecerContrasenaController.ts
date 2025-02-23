@@ -6,7 +6,7 @@ import redis from '../config/configRedis';
 import { sendEmail } from "../utils/emailService";
 
 dotenv.config();
-const USER_SERVICE_URL = "https://tatsoftgestionusuarios-hufsaqe0emc6gsf4.eastus-01.azurewebsites.net/api/usuarios"; // URL del microservicio
+const USER_SERVICE_URL = process.env.USER_SERVICE_URL;
 
 // Endpoint para Solicitar Código
 export const requestResetCode = async (req: Request, res: Response) => {
@@ -29,6 +29,9 @@ export const requestResetCode = async (req: Request, res: Response) => {
 
         // Guardar el código en Redis con expiración de 10 minutos
         try {
+            if (!redis.status || redis.status !== "ready") {
+                await redis.connect();
+              }
             const pingResult = await redis.ping();
             console.log('Redis ping result:', pingResult);
             
