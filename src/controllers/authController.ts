@@ -18,8 +18,6 @@ export const login = async (req: Request, res: Response) => {
     const user = response.data;
     
     console.log(user, 'CONTRASENA',user.contrasena, 'ROLE',user.rol, 'ID', user.id_usuario );
-    
-    console.log(user, 'CONTRASENA',user.contrasena, 'ROLE',user.rol, 'ID', user.id_usuario );
     // Verifica si el usuario fue encontrado
     if (!user || !user.contrasena || !user.rol) {
         
