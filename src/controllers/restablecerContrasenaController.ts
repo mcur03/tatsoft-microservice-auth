@@ -46,7 +46,7 @@ export const requestResetCode = async (req: Request, res: Response) => {
         }
 
         // Enviar el correo directamente desde Node.js
-        await sendEmail(email, "Código de verificación", code);
+        await sendEmail(email, "Código de verificación TatSoft", code);
         console.log('codigo enviado');
         
 
